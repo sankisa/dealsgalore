@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DealsGalore — Hottest Amazon Deals Every Day</title>
+  <meta name="description" content="Find the hottest Amazon deals every day! Huge discounts on Electronics, Home, Beauty, Toys, Fashion and more. Updated daily with fresh deals!"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary: #FF6B00;
+      --secondary: #FFB300;
+      --dark: #1a1a2e;
+      --darker: #0f0f1a;
+      --card-bg: rgba(255,255,255,0.05);
+      --text: #f0f0f0;
+      --text-muted: #aaa;
+      --transition: 0.3s ease;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--darker);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #FF6B00, #FF8C00, #FFB300);
+      padding: 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(255,107,0,0.4);
+    }
+
+    .header-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon { font-size: 2.2rem; }
+
+    .logo-text { display: flex; flex-direction: column; }
+
+    .logo-text .brand {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 1.8rem;
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      line-height: 1;
+    }
+
+    .logo-text .tagline {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.85);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .header-badge {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: white;
+      font-weight: 600;
+      backdrop-filter: blur(10px);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      padding: 60px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(255,107,0,0.1) 0%, transparent 60%);
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      color: white;
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: white;
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 2rem;
+      color: #FFB300;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* DEAL TICKER */
+    .deal-ticker {
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      padding: 10px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-content {
+      display: inline-block;
+      animation: ticker 30s linear infinite;
+    }
+
+    .ticker-content span {
+      margin: 0 30px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: white;
+    }
+
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* FILTER TABS */
+    .filter-section {
+      max-width: 1400px;
+      margin: 40px auto 20px;
+      padding: 0 24px;
+    }
+
+    .filter-title {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .tab-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-muted);
+      padding: 10px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      border-color: transparent;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255,107,0,0.4);
+    }
+
+    /* PRODUCTS GRID */
+    .products-section {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+
+    .category-section { margin-bottom: 60px; }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .category-icon {
+      font-size: 2rem;
+      background: linear-gradient(135deg, rgba(255,107,0,0.2), rgba(255,179,0,0.2));
+      border: 1px solid rgba(255,107,0,0.3);
+      padding: 10px;
+      border-radius: 12px;
+    }
+
+    .category-info h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .category-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    /* DEAL CARD */
+    .deal-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .deal-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,107,0,0.4);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,107,0,0.2);
+    }
+
+    .card-top {
+      position: relative;
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card-emoji {
+      font-size: 4rem;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      z-index: 1;
+    }
+
+    .deal-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: linear-gradient(135deg, #FF6B00, #FF3D00);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+      text-transform: uppercase;
+    }
+
+    .discount-badge {
+      position: absolute;
+      top: 12px; right: 12px;
+      background: linear-gradient(135deg, #00C853, #69F0AE);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 50px;
+    }
+
+    .card-body { padding: 20px; }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-category {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #FFB300;
+      font-weight: 600;
+    }
+
+    .card-stars { color: #FFB300; font-size: 0.85rem; }
+
+    .card-body h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-body p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .card-features li {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.7);
+      padding: 3px 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .card-features li::before {
+      content: '✓';
+      color: #FFB300;
+      font-weight: 700;
+    }
+
+    .btn-deal {
+      display: block;
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .btn-deal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,107,0,0.4);
+      filter: brightness(1.1);
+    }
+
+    /* SPRING BANNER */
+    .spring-banner {
+      background: linear-gradient(135deg, #FF6B00, #FFB300, #FF6B00);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
+      margin: 40px auto;
+      border-radius: 20px;
+      padding: 40px;
+      text-align: center;
+      max-width: 1400px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .spring-banner h2 {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 2.5rem;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .spring-banner p {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 20px;
+    }
+
+    .btn-white {
+      display: inline-block;
+      background: white;
+      color: #FF6B00;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-white:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    /* FOOTER */
+    footer {
+      background: rgba(0,0,0,0.3);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Fredoka One', sans-serif;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #FF6B00, #FFB300);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 12px;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      max-width: 600px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover { color: #FFB300; }
+
+    .disclaimer {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .hero-stats { gap: 20px; }
+      .products-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+      .spring-banner { margin: 20px 16px; padding: 30px 20px; }
+      .spring-banner h2 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">🛒</div>
+      <div class="logo-text">
+        <span class="brand">DealsGalore</span>
+        <span class="tagline">Hottest Amazon Deals Every Day</span>
+      </div>
+    </div>
+    <div class="header-badge">🌸 Spring Sale — Up to 70% OFF!</div>
+  </div>
+</header>
+
+<!-- DEAL TICKER -->
+<div class="deal-ticker">
+  <div class="ticker-content">
+    <span>🔥 Spring Sale — Huge discounts!</span>
+    <span>🎨 Art & Craft up to 50% OFF</span>
+    <span>🏠 Home & Kitchen deals daily</span>
+    <span>💄 Beauty deals up to 60% OFF</span>
+    <span>🧸 Toys & Games on sale now</span>
+    <span>📱 Electronics — best prices</span>
+    <span>👗 Fashion deals updated daily</span>
+    <span>🌿 Garden & Outdoor on sale</span>
+    <span>🔥 Spring Sale — Huge discounts!</span>
+    <span>🎨 Art & Craft up to 50% OFF</span>
+    <span>🏠 Home & Kitchen deals daily</span>
+    <span>💄 Beauty deals up to 60% OFF</span>
+    <span>🧸 Toys & Games on sale now</span>
+    <span>📱 Electronics — best prices</span>
+    <span>👗 Fashion deals updated daily</span>
+    <span>🌿 Garden & Outdoor on sale</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">🌸 Spring Deals 2026 — Live Now!</div>
+    <h1>Welcome to <span>DealsGalore!</span><br/>Best Amazon Deals Daily</h1>
+    <p>Handpicked deals across Electronics, Home, Beauty, Toys, Fashion & more — updated daily so you never miss a bargain!</p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">50+</div>
+        <div class="stat-label">Daily Deals</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">8+</div>
+        <div class="stat-label">Categories</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">Max Savings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPRING BANNER -->
+<div class="spring-banner">
+  <h2>🌸 Spring Sale is HERE!</h2>
+  <p>Massive discounts on thousands of Amazon products — limited time only!</p>
+  <a href="https://www.amazon.com/deals?tag=artcrafthub-20" class="btn-white" target="_blank">🛒 Shop All Spring Deals on Amazon</a>
+</div>
+
+<!-- FILTER TABS -->
+<div class="filter-section">
+  <p class="filter-title">Browse by Category</p>
+  <div class="filter-tabs" role="tablist">
+    <button class="tab-btn active" onclick="filterDeals('all')">🛒 All Deals</button>
+    <button class="tab-btn" onclick="filterDeals('artcraft')">🎨 Art & Craft</button>
+    <button class="tab-btn" onclick="filterDeals('electronics')">📱 Electronics</button>
+    <button class="tab-btn" onclick="filterDeals('home')">🏠 Home & Kitchen</button>
+    <button class="tab-btn" onclick="filterDeals('beauty')">💄 Beauty</button>
+    <button class="tab-btn" onclick="filterDeals('toys')">🧸 Toys & Games</button>
+    <button class="tab-btn" onclick="filterDeals('fashion')">👗 Fashion</button>
+    <button class="tab-btn" onclick="filterDeals('sports')">🏋️ Sports & Fitness</button>
+    <button class="tab-btn" onclick="filterDeals('garden')">🌿 Garden & Outdoor</button>
+  </div>
+</div>
+
+<!-- PRODUCTS -->
+<div class="products-section">
+
+  <!-- ART & CRAFT -->
+  <section class="category-section" id="artcraft-section" data-category="artcraft">
+    <div class="category-header">
+      <div class="category-icon">🎨</div>
+      <div class="category-info">
+        <h2>Art & Craft Deals</h2>
+        <p>Best deals on art supplies, craft kits & creative tools</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="artify-brush-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#1a237e,#283593)">
+          <span class="card-emoji">🖌️</span>
+          <span class="deal-badge">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Art & Craft</span><span class="card-stars">★★★★★</span></div>
+          <h3>ARTIFY 25-Piece Professional Paint Brush Set</h3>
+          <p>Expert series synthetic nylon brushes for acrylic, oil & watercolor. Canvas roll case & palette knife included.</p>
+          <ul class="card-features">
+            <li>25 professional brushes</li>
+            <li>Canvas roll case included</li>
+            <li>No shedding guarantee</li>
+          </ul>
+          <a href="https://www.amazon.com/dp/B08DV1XT1Q?tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="mica-powder-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">
+          <span class="card-emoji">✨</span>
+          <span class="deal-badge">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Art & Craft</span><span class="card-stars">★★★★★</span></div>
+          <h3>CHANGTIKEJI Mica Powder — 24 Colors (10g Each)</h3>
+          <p>Natural pigment powder perfect for epoxy resin, soap making, candle making, lip gloss & nail polish.</p>
+          <ul class="card-features">
+            <li>24 vibrant colors</li>
+            <li>10g per bottle</li>
+            <li>Perfect for resin & soap</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=CHANGTIKEJI+Mica+Powder+24+Colors&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="rainbow-pencils-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#b71c1c,#e53935)">
+          <span class="card-emoji">🌈</span>
+          <span class="deal-badge">Easter Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Art & Craft</span><span class="card-stars">★★★★☆</span></div>
+          <h3>12 Rainbow Colored Pencils — Easter Basket Stuffers</h3>
+          <p>Perfect Easter basket stuffers for teens & kids ages 5-12. Vibrant rainbow colors for drawing & school projects.</p>
+          <ul class="card-features">
+            <li>12 vibrant rainbow colors</li>
+            <li>Perfect for ages 5-12</li>
+            <li>Great Easter gift</li>
+          </ul>
+          <a href="https://amzn.to/4v0v3yj" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELECTRONICS -->
+  <section class="category-section" id="electronics-section" data-category="electronics">
+    <div class="category-header">
+      <div class="category-icon">📱</div>
+      <div class="category-info">
+        <h2>Electronics Deals</h2>
+        <p>Best prices on gadgets, devices & tech accessories</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="fire-tablet-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">
+          <span class="card-emoji">📱</span>
+          <span class="deal-badge">Hot Deal</span>
+          <span class="discount-badge">Up to 40% OFF</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Electronics</span><span class="card-stars">★★★★★</span></div>
+          <h3>Amazon Fire HD 8 Tablet</h3>
+          <p>8" HD display, up to 13 hours battery, 32GB storage. Perfect for streaming, reading & browsing.</p>
+          <ul class="card-features">
+            <li>8" HD display</li>
+            <li>13 hours battery life</li>
+            <li>32GB storage</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=Amazon+Fire+HD+8+Tablet&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="earbuds-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">
+          <span class="card-emoji">🎧</span>
+          <span class="deal-badge">Spring Sale</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Electronics</span><span class="card-stars">★★★★★</span></div>
+          <h3>Wireless Earbuds with Noise Cancelling</h3>
+          <p>Active noise cancellation, 30-hour battery life, premium sound quality. Perfect for work & travel.</p>
+          <ul class="card-features">
+            <li>Active noise cancellation</li>
+            <li>30-hour battery</li>
+            <li>Premium sound quality</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=wireless+earbuds+noise+cancelling&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="smartwatch-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#263238,#37474f)">
+          <span class="card-emoji">⌚</span>
+          <span class="deal-badge">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Electronics</span><span class="card-stars">★★★★☆</span></div>
+          <h3>Smart Fitness Watch with Health Tracking</h3>
+          <p>Heart rate monitor, sleep tracking, GPS, water resistant. Your ultimate fitness companion.</p>
+          <ul class="card-features">
+            <li>Heart rate & sleep tracking</li>
+            <li>GPS enabled</li>
+            <li>Water resistant</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=smart+fitness+watch&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOME & KITCHEN -->
+  <section class="category-section" id="home-section" data-category="home">
+    <div class="category-header">
+      <div class="category-icon">🏠</div>
+      <div class="category-info">
+        <h2>Home & Kitchen Deals</h2>
+        <p>Amazing deals on home essentials, kitchen gadgets & decor</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="airfryer-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#bf360c,#e64a19)">
+          <span class="card-emoji">🍳</span>
+          <span class="deal-badge">Hot Deal</span>
+          <span class="discount-badge">Save 35%</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Home & Kitchen</span><span class="card-stars">★★★★★</span></div>
+          <h3>Digital Air Fryer — 5.8 Quart XL</h3>
+          <p>Cook crispy, delicious food with up to 85% less fat. 8 preset cooking modes, easy digital controls.</p>
+          <ul class="card-features">
+            <li>5.8 Quart XL capacity</li>
+            <li>85% less fat cooking</li>
+            <li>8 preset cooking modes</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=digital+air+fryer+5.8+quart&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="coffee-maker-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#3e2723,#4e342e)">
+          <span class="card-emoji">☕</span>
+          <span class="deal-badge">Spring Sale</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Home & Kitchen</span><span class="card-stars">★★★★★</span></div>
+          <h3>Keurig K-Classic Coffee Maker</h3>
+          <p>Brew a perfect cup in under a minute. Compatible with all K-Cup pods. 48oz water reservoir.</p>
+          <ul class="card-features">
+            <li>Brews in under 1 minute</li>
+            <li>48oz water reservoir</li>
+            <li>Multiple brew sizes</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=Keurig+K-Classic+Coffee+Maker&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="robot-vacuum-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#006064,#00838f)">
+          <span class="card-emoji">🤖</span>
+          <span class="deal-badge">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Home & Kitchen</span><span class="card-stars">★★★★☆</span></div>
+          <h3>Robot Vacuum Cleaner — Wi-Fi Connected</h3>
+          <p>Self-charging robot vacuum with Wi-Fi, app control, works on carpets & hard floors.</p>
+          <ul class="card-features">
+            <li>Wi-Fi & app controlled</li>
+            <li>Self-charging</li>
+            <li>Works on all floors</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=robot+vacuum+wifi&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BEAUTY -->
+  <section class="category-section" id="beauty-section" data-category="beauty">
+    <div class="category-header">
+      <div class="category-icon">💄</div>
+      <div class="category-info">
+        <h2>Beauty Deals</h2>
+        <p>Top deals on skincare, makeup & personal care</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="skincare-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#880e4f,#ad1457)">
+          <span class="card-emoji">🧴</span>
+          <span class="deal-badge">Spring Sale</span>
+          <span class="discount-badge">60% OFF</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Beauty</span><span class="card-stars">★★★★★</span></div>
+          <h3>CeraVe Moisturizing Cream — 19oz</h3>
+          <p>Developed with dermatologists. 3 essential ceramides, hyaluronic acid for 24-hour hydration.</p>
+          <ul class="card-features">
+            <li>24-hour hydration</li>
+            <li>Fragrance free</li>
+            <li>Dermatologist developed</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=CeraVe+Moisturizing+Cream&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="hairdryer-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">
+          <span class="card-emoji">💇</span>
+          <span class="deal-badge">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Beauty</span><span class="card-stars">★★★★★</span></div>
+          <h3>Professional Ionic Hair Dryer — 1875W</h3>
+          <p>Ionic technology reduces frizz & drying time. 3 heat settings, 2 speeds, cool shot button.</p>
+          <ul class="card-features">
+            <li>1875W powerful motor</li>
+            <li>Ionic frizz reduction</li>
+            <li>3 heat settings</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=professional+ionic+hair+dryer+1875W&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="makeup-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#c62828,#d32f2f)">
+          <span class="card-emoji">💋</span>
+          <span class="deal-badge">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Beauty</span><span class="card-stars">★★★★☆</span></div>
+          <h3>e.l.f. 14-Piece Makeup Brush Set</h3>
+          <p>Professional quality brushes for face, eyes & lips. Soft synthetic bristles, perfect for all skill levels.</p>
+          <ul class="card-features">
+            <li>14 professional brushes</li>
+            <li>Soft synthetic bristles</li>
+            <li>Perfect for all skill levels</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=elf+makeup+brush+set&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOYS & GAMES -->
+  <section class="category-section" id="toys-section" data-category="toys">
+    <div class="category-header">
+      <div class="category-icon">🧸</div>
+      <div class="category-info">
+        <h2>Toys & Games Deals</h2>
+        <p>Best prices on kids toys, games & Easter gifts</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="lego-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#e65100,#ef6c00)">
+          <span class="card-emoji">🧱</span>
+          <span class="deal-badge">Easter Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Toys & Games</span><span class="card-stars">★★★★★</span></div>
+          <h3>LEGO Classic Creative Bricks Set</h3>
+          <p>790 pieces in 33 colors. Endless creative building fun for kids ages 4+. Perfect Easter basket gift!</p>
+          <ul class="card-features">
+            <li>790 pieces in 33 colors</li>
+            <li>Perfect for ages 4+</li>
+            <li>Great Easter gift</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=LEGO+Classic+Creative+Bricks&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="egg-toss-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#1b5e20,#388e3c)">
+          <span class="card-emoji">🥚</span>
+          <span class="deal-badge">Easter Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Toys & Games</span><span class="card-stars">★★★★★</span></div>
+          <h3>Move2Play Easter Egg Toss Kids Game</h3>
+          <p>Hilarious indoor/outdoor Easter egg toss game for kids ages 3-8+. Perfect Easter basket stuffer!</p>
+          <ul class="card-features">
+            <li>Perfect for ages 3-8+</li>
+            <li>Indoor & outdoor fun</li>
+            <li>Great Easter basket stuffer</li>
+          </ul>
+          <a href="https://www.amazon.com/dp/B07CN72D4V?tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="girlzone-sand-art">
+        <div class="card-top" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">
+          <span class="card-emoji">🦄</span>
+          <span class="deal-badge">Easter Gift</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Toys & Games</span><span class="card-stars">★★★★★</span></div>
+          <h3>GirlZone Unicorn Sensory Bin Sand Art Kit</h3>
+          <p>2lbs moldable rainbow colored sand with 7 creative tools. Perfect Easter & birthday gift for girls!</p>
+          <ul class="card-features">
+            <li>2lbs rainbow colored sand</li>
+            <li>7 creative tools included</li>
+            <li>Perfect gift for girls</li>
+          </ul>
+          <a href="https://amzn.to/4bVbbUJ" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FASHION -->
+  <section class="category-section" id="fashion-section" data-category="fashion">
+    <div class="category-header">
+      <div class="category-icon">👗</div>
+      <div class="category-info">
+        <h2>Fashion Deals</h2>
+        <p>Best deals on clothing, shoes & accessories</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="sneakers-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#01579b,#0277bd)">
+          <span class="card-emoji">👟</span>
+          <span class="deal-badge">Spring Sale</span>
+          <span class="discount-badge">40% OFF</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Fashion</span><span class="card-stars">★★★★★</span></div>
+          <h3>Women's Running Sneakers — Lightweight</h3>
+          <p>Breathable mesh upper, cushioned sole, perfect for running, walking & everyday wear. Multiple colors.</p>
+          <ul class="card-features">
+            <li>Lightweight & breathable</li>
+            <li>Cushioned comfort sole</li>
+            <li>Multiple colors available</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=womens+running+sneakers+lightweight&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="handbag-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#880e4f,#c2185b)">
+          <span class="card-emoji">👜</span>
+          <span class="deal-badge">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Fashion</span><span class="card-stars">★★★★☆</span></div>
+          <h3>Women's Leather Tote Handbag</h3>
+          <p>Spacious vegan leather tote with multiple compartments. Perfect for work, travel & everyday use.</p>
+          <ul class="card-features">
+            <li>Vegan leather material</li>
+            <li>Multiple compartments</li>
+            <li>Perfect for work & travel</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=womens+leather+tote+handbag&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="sunglasses-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#f57f17,#f9a825)">
+          <span class="card-emoji">🕶️</span>
+          <span class="deal-badge">Spring Sale</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Fashion</span><span class="card-stars">★★★★★</span></div>
+          <h3>Classic UV400 Sunglasses — Polarized</h3>
+          <p>100% UV400 protection, polarized lenses reduce glare. Stylish design for men & women.</p>
+          <ul class="card-features">
+            <li>100% UV400 protection</li>
+            <li>Polarized lenses</li>
+            <li>For men & women</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=polarized+sunglasses+UV400&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPORTS & FITNESS -->
+  <section class="category-section" id="sports-section" data-category="sports">
+    <div class="category-header">
+      <div class="category-icon">🏋️</div>
+      <div class="category-info">
+        <h2>Sports & Fitness Deals</h2>
+        <p>Best deals on fitness equipment, sports gear & outdoor activities</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="yoga-mat-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#1a237e,#283593)">
+          <span class="card-emoji">🧘</span>
+          <span class="deal-badge">Spring Sale</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Sports & Fitness</span><span class="card-stars">★★★★★</span></div>
+          <h3>Non-Slip Yoga Mat — Extra Thick 6mm</h3>
+          <p>Premium TPE material, extra thick for joint protection, non-slip surface for yoga & pilates.</p>
+          <ul class="card-features">
+            <li>Extra thick 6mm cushion</li>
+            <li>Non-slip surface</li>
+            <li>Eco-friendly TPE material</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=non+slip+yoga+mat+6mm&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="dumbbells-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#212121,#424242)">
+          <span class="card-emoji">💪</span>
+          <span class="deal-badge">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Sports & Fitness</span><span class="card-stars">★★★★★</span></div>
+          <h3>Adjustable Dumbbells Set — 5-52.5 lbs</h3>
+          <p>Replace 15 sets of weights. Quick adjust dial system, durable steel construction. Perfect home gym.</p>
+          <ul class="card-features">
+            <li>Adjustable 5-52.5 lbs</li>
+            <li>Replaces 15 weight sets</li>
+            <li>Quick adjust dial</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=adjustable+dumbbells+set&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="resistance-bands-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#004d40,#00695c)">
+          <span class="card-emoji">🏃</span>
+          <span class="deal-badge">Best Seller</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Sports & Fitness</span><span class="card-stars">★★★★☆</span></div>
+          <h3>Resistance Bands Set — 5 Levels</h3>
+          <p>5 resistance levels for all fitness levels. Perfect for home workouts, physical therapy & stretching.</p>
+          <ul class="card-features">
+            <li>5 resistance levels</li>
+            <li>For all fitness levels</li>
+            <li>Great for home workouts</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=resistance+bands+set+5+levels&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARDEN & OUTDOOR -->
+  <section class="category-section" id="garden-section" data-category="garden">
+    <div class="category-header">
+      <div class="category-icon">🌿</div>
+      <div class="category-info">
+        <h2>Garden & Outdoor Deals</h2>
+        <p>Best deals on gardening tools, outdoor furniture & more</p>
+      </div>
+    </div>
+    <div class="products-grid">
+      <div class="deal-card" id="garden-tools-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">
+          <span class="card-emoji">🌱</span>
+          <span class="deal-badge">Spring Sale</span>
+          <span class="discount-badge">Save 30%</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Garden & Outdoor</span><span class="card-stars">★★★★★</span></div>
+          <h3>Garden Hand Tools Set — 10 Pieces</h3>
+          <p>Complete garden tool set with trowel, cultivator, weeder & more. Ergonomic handles, rust resistant.</p>
+          <ul class="card-features">
+            <li>10-piece complete set</li>
+            <li>Rust resistant steel</li>
+            <li>Ergonomic handles</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=garden+hand+tools+set+10+piece&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="solar-lights-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#f57f17,#f9a825)">
+          <span class="card-emoji">☀️</span>
+          <span class="deal-badge">Hot Deal</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Garden & Outdoor</span><span class="card-stars">★★★★★</span></div>
+          <h3>Solar Garden Lights — Set of 12</h3>
+          <p>Waterproof LED solar pathway lights. Auto on/off at dusk/dawn. Easy stake installation.</p>
+          <ul class="card-features">
+            <li>12 lights included</li>
+            <li>Auto on/off feature</li>
+            <li>Waterproof design</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=solar+garden+lights+set+12&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+
+      <div class="deal-card" id="planter-deal">
+        <div class="card-top" style="background:linear-gradient(135deg,#4e342e,#6d4c41)">
+          <span class="card-emoji">🪴</span>
+          <span class="deal-badge">Spring Sale</span>
+        </div>
+        <div class="card-body">
+          <div class="card-meta"><span class="card-category">Garden & Outdoor</span><span class="card-stars">★★★★☆</span></div>
+          <h3>Self-Watering Planter Pots — Set of 5</h3>
+          <p>Self-watering system keeps plants hydrated for up to 2 weeks. Drainage holes, modern design.</p>
+          <ul class="card-features">
+            <li>Self-watering system</li>
+            <li>2 weeks water reserve</li>
+            <li>Modern stylish design</li>
+          </ul>
+          <a href="https://www.amazon.com/s?k=self+watering+planter+pots+set&tag=artcrafthub-20" class="btn-deal" target="_blank">🛒 Check Price on Amazon</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🛒 DealsGalore</div>
+  <p>Your #1 source for the hottest Amazon deals every day! We handpick deals across all categories so you never miss a bargain.</p>
+  <div class="footer-links">
+    <a href="https://artcraftdeals.com" target="_blank">🎨 ArtCraft Deals</a>
+    <a href="https://www.amazon.com/deals?tag=artcrafthub-20" target="_blank">🛒 Amazon Deals</a>
+    <a href="https://www.amazon.com/s?k=spring+sale&tag=artcrafthub-20" target="_blank">🌸 Spring Sale</a>
+  </div>
+  <p class="disclaimer">As an Amazon Associate I earn from qualifying purchases. All prices and availability are subject to change. Product prices and availability were accurate at the time of publishing.</p>
+</footer>
+
+<script>
+  function filterDeals(cat) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.category-section').forEach(section => {
+      section.style.display = (cat === 'all' || section.dataset.category === cat) ? 'block' : 'none';
+    });
+    document.querySelector('.products-section').scrollIntoView({ behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
