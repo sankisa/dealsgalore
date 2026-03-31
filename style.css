@@ -1,0 +1,55 @@
+:root {
+  --blue-dark: #0D47A1; --blue-main: #1565C0; --blue-mid: #1976D2;
+  --blue-light: #2196F3; --blue-pale: #E3F2FD; --gold: #FFC107;
+  --gold-dark: #FF8F00; --white: #FFFFFF; --gray-light: #F5F7FA;
+  --shadow: 0 4px 24px rgba(21,101,192,0.10); --radius: 16px; --transition: 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--gray-light); color: #222; }
+nav {
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue-main));
+  padding: 0 40px; display: flex; align-items: center; justify-content: space-between;
+  height: 80px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 16px rgba(13,71,161,0.3);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo img { height: 55px; width: auto; }
+.nav-logo-text { font-size: 1.6rem; font-weight: 800; color: var(--white); letter-spacing: 1px; }
+.nav-logo-text span { color: var(--gold); }
+.nav-links { display: flex; gap: 4px; list-style: none; }
+.nav-links a { color: var(--white); text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 7px 12px; border-radius: 20px; transition: var(--transition); }
+.nav-links a:hover { background: rgba(255,255,255,0.15); color: var(--gold); }
+.nav-links a.active { background: var(--gold); color: var(--blue-dark); }
+.page-hero { color: white; padding: 60px 40px; text-align: center; }
+.page-hero h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 12px; }
+.page-hero p { font-size: 1.1rem; opacity: 0.9; }
+.section { padding: 50px 40px; max-width: 1400px; margin: 0 auto; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+.section-title { font-size: 1.8rem; font-weight: 800; color: var(--blue-dark); }
+.deals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+.deal-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); display: flex; flex-direction: column; }
+.deal-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(21,101,192,0.18); }
+.deal-card-top { background: linear-gradient(135deg, var(--blue-pale), #BBDEFB); height: 130px; display: flex; align-items: center; justify-content: center; font-size: 4rem; position: relative; }
+.deal-badge { position: absolute; top: 12px; left: 12px; background: #F44336; color: white; font-size: 0.75rem; font-weight: 800; padding: 4px 10px; border-radius: 10px; }
+.deal-badge.hot { background: var(--gold-dark); }
+.deal-badge.new { background: #4CAF50; }
+.deal-card-body { padding: 18px; flex: 1; display: flex; flex-direction: column; }
+.deal-category-tag { font-size: 0.75rem; font-weight: 700; color: var(--blue-main); background: var(--blue-pale); padding: 3px 10px; border-radius: 10px; display: inline-block; margin-bottom: 8px; }
+.deal-title { font-size: 1rem; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; line-height: 1.4; }
+.deal-desc { font-size: 0.85rem; color: #666; margin-bottom: 12px; flex: 1; }
+.deal-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 10px; }
+.deal-price-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; flex-wrap: wrap; }
+.deal-price { font-size: 1.4rem; font-weight: 900; color: var(--blue-dark); }
+.deal-original { font-size: 0.9rem; color: #999; text-decoration: line-through; }
+.deal-discount { font-size: 0.85rem; font-weight: 700; color: #F44336; }
+.btn-deal { display: block; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); color: white; text-align: center; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 0.95rem; transition: var(--transition); }
+.btn-deal:hover { background: linear-gradient(135deg, var(--blue-dark), var(--blue-main)); transform: translateY(-1px); }
+footer { background: linear-gradient(135deg, var(--blue-dark), var(--blue-main)); color: white; padding: 30px 40px; margin-top: 60px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; max-width: 1400px; margin: 0 auto 40px; }
+.footer-brand p { font-size: 0.9rem; opacity: 0.8; line-height: 1.6; margin-top: 12px; }
+.footer-col h4 { font-size: 1rem; font-weight: 700; color: var(--gold); margin-bottom: 16px; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; transition: var(--transition); }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.2); padding-top: 24px; text-align: center; font-size: 0.85rem; opacity: 0.7; max-width: 1400px; margin: 0 auto; }
+@media (max-width: 768px) { nav { padding: 0 16px; height: 65px; } .nav-links { display: none; } .page-hero h1 { font-size: 1.8rem; } .section { padding: 30px 16px; } .footer-grid { grid-template-columns: 1fr 1fr; } }
